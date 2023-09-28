@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option go_package = "jayalsa/project_golang/product";
+
+package product;
+
+message Product {
+    string ID= 1;
+    string Name = 2;
+    double Price = 3;
+    string Description = 4;
+  
+}
+
+message ProductResponse {
+    string Id = 1;
+    string Success = 2;
+    string ErrorMessage = 3;
+}
+message GetProductByIDRequest {
+    string id = 1;
+}
+message GetProductResponse {
+    Product product = 1;
+    string success = 2;
+    string error_message = 3;
+}
+message EmptyRequest {}
+
+
+service ProductService {
+    rpc CreateProduct(Product) returns (ProductResponse);
+    rpc GetProductByID(GetProductByIDRequest) returns (GetProductResponse);
+    rpc GetProducts(EmptyRequest) returns (GetProductResponse);
+
+
+}
